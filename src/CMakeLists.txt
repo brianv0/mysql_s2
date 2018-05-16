@@ -11,3 +11,4 @@ include_directories(${MYSQLS2_SOURCE_DIR}/src/s2geometry/src ${MYSQS2_SOURCE_DIR
 
 add_subdirectory(s2geometry)
 add_library (mysqls2 SHARED mysqls2.cxx)
+target_link_libraries(mysqls2 s2)
