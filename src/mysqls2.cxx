@@ -32,7 +32,7 @@ extern "C" {
 
 
     my_bool UDF_API s2_contains_init(UDF_INIT *initid, UDF_ARGS *args, char *message);
-    long long UDF_API *s2_contains(UDF_INIT *initid, UDF_ARGS *args, char *result,
+    char UDF_API *s2_contains(UDF_INIT *initid, UDF_ARGS *args, char *result,
                                    unsigned long *length, char *is_null, char *error);
     void UDF_API s2_contains_deinit(UDF_INIT *initid);
 
@@ -52,13 +52,13 @@ extern "C" {
         return 0;
     }
 
-    long long UDF_API *s2_contains(UDF_INIT *initid, UDF_ARGS *args, char *result,
+    char UDF_API *s2_contains(UDF_INIT *initid, UDF_ARGS *args, char *result,
                                    unsigned long *length, char *is_null, char *error) {
         size_t outputlength = 0;
         const char *geom1 = args->args[0];
         char *encoded = base64_encode(reinterpret_cast<const unsigned char *>(geom1), args->lengths[0], &outputlength);
         initid->ptr = encoded;
-        return 0;
+        return encoded;
     }
 
     void UDF_API s2_contains_deinit(UDF_INIT *initid) {
