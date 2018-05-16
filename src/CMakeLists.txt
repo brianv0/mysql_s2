@@ -7,7 +7,6 @@ if (APPLE)
     set(OPENSSL_ROOT_DIR /usr/local/opt/openssl)
 endif()
 
-include_directories (${MYSQLS2_SOURCE_DIR}/src/cpp-hyperloglog/include ${MYSQLHLL_SOURCE_DIR}/libmysqlhll/base64 ${MYSQL_INCLUDE_DIR})
+include_directories(${MYSQLS2_SOURCE_DIR}/src/s2geometry/src ${MYSQS2_SOURCE_DIR}/src/base64 ${MYSQL_INCLUDE_DIR})
 
-include_directories(${MYSQLS2_SOURCE_DIR}/src/s2geometry/src)
 add_library (mysqls2 SHARED mysqls2.cxx)
