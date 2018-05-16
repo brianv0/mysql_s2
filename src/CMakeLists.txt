@@ -9,4 +9,5 @@ endif()
 
 include_directories(${MYSQLS2_SOURCE_DIR}/src/s2geometry/src ${MYSQS2_SOURCE_DIR}/src/base64 ${MYSQL_INCLUDE_DIR})
 
+add_subdirectory(s2geometry)
 add_library (mysqls2 SHARED mysqls2.cxx)

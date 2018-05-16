@@ -13,6 +13,7 @@
 
 #include <mysql.h>
 #include <cstdlib>
+#include <cstdio>
 #include "base64/base64.h"
 #include "s2/s2boolean_operation.h"
 #include "s2/s2cap.h"
