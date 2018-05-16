@@ -57,6 +57,8 @@ extern "C" {
         size_t outputlength = 0;
         const char *geom1 = args->args[0];
         char *encoded = base64_encode(reinterpret_cast<const unsigned char *>(geom1), args->lengths[0], &outputlength);
+        unsigned long len = static_cast<unsigned long>(outputlength);
+        length = &len;
         initid->ptr = encoded;
         return encoded;
     }
