@@ -59,14 +59,13 @@ extern "C" {
         fprintf(stdout, "In UDF2");
         auto *geombuff1 = reinterpret_cast<unsigned char *>(args->args[0]);
         *length = 9;
-        return "Preparing";
-//        fprintf(stderr, "Preparing");
-//        GEOSGeometry *geom1;
-//        geom1 = GEOSGeomFromWKB_buf(
-//                geombuff1,
-//                args->lengths[0]
-//        );
-//        fprintf(stderr, "Converted to wkb");
+        fprintf(stderr, "Preparing");
+        GEOSGeometry *geom1;
+        geom1 = GEOSGeomFromWKB_buf(
+                geombuff1,
+                args->lengths[0]
+        );
+        return "Converted to wkb";
 //        char *encoded;
 //        encoded = GEOSGeomToWKT(geom1);
 //        fprintf(stderr, "Converted to wkt");
