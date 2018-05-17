@@ -9,6 +9,7 @@ endif()
 include_directories(${MYSQLS2_SOURCE_DIR}/src
         ${MYSQLS2_SOURCE_DIR}/src/s2geometry/src
         ${MYSQLS2_SOURCE_DIR}/src/geos/capi
+        ${MYSQLS2_SOURCE_DIR}/src/geos/include
         ${MYSQS2_SOURCE_DIR}/src/base64
         ${MYSQL_INCLUDE_DIR})
 

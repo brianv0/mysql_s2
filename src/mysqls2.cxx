@@ -35,7 +35,6 @@ extern "C" {
     char UDF_API *s2_contains(UDF_INIT *initid, UDF_ARGS *args, char *result,
                                    unsigned long *length, char *is_null, char *error);
     void UDF_API s2_contains_deinit(UDF_INIT *initid);
-    void unpack_mysqlgeom(MySqlGeometry *geom, const char* buffer);
 
     my_bool UDF_API s2_contains_init(UDF_INIT *initid, UDF_ARGS *args, char *message) {
         my_bool const_item = 1;
@@ -57,15 +56,15 @@ extern "C" {
                                    unsigned long *length, char *is_null, char *error) {
 
         auto *geombuff1 = reinterpret_cast<unsigned char *>(args->args[0]);
-        GEOSGeometry *firstGeom;
-        firstGeom = GEOSGeomFromWKB_buf(
+        GEOSGeometry *geom1;
+        geom1 = GEOSGeomFromWKB_buf(
                 geombuff1,
                 args->lengths[0]
         );
         char *encoded;
-        encoded = GEOSGeomToWKT(firstGeom);
-        free(firstGeom);
-        size_t outputlength = 0;
+        encoded = GEOSGeomToWKT(geom1);
+        free(geom1);
+        //size_t outputlength = 0;
         //char *encoded = base64_encode(reinterpret_cast<const unsigned char *>(geombuff1), args->lengths[0], &outputlength);
         //auto len = static_cast<unsigned long>(outputlength);
         //length = &len;
