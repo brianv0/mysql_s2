@@ -65,7 +65,10 @@ extern "C" {
                 geombuff1,
                 args->lengths[0]
         );
-        return "Converted to wkb";
+        auto num = GEOSGetNumCoordinates(geom1)
+        char buffer [10];
+        sprintf(buffer, "cnum:%d", num);
+        return buffer;
 //        char *encoded;
 //        encoded = GEOSGeomToWKT(geom1);
 //        fprintf(stderr, "Converted to wkt");
