@@ -65,7 +65,7 @@ extern "C" {
                 geombuff1,
                 args->lengths[0]
         );
-        auto num = GEOSGetNumCoordinates(geom1)
+        auto num = GEOSGetNumCoordinates(geom1);
         char buffer [10];
         sprintf(buffer, "cnum:%d", num);
         return buffer;
