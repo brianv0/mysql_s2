@@ -13,7 +13,7 @@ include_directories(${MYSQLS2_SOURCE_DIR}/src
         ${MYSQS2_SOURCE_DIR}/src/base64
         ${MYSQL_INCLUDE_DIR})
 
-link_directories(src/geos/lib)
+link_directories(${MYSQLS2_SOURCE_DIR}/src/geos/lib)
 add_subdirectory(s2geometry)
 add_library (mysqls2 SHARED mysqls2.cxx)
 target_link_libraries(mysqls2 s2 geos geos_c)
