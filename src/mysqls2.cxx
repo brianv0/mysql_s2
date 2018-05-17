@@ -55,14 +55,19 @@ extern "C" {
     char UDF_API *s2_contains(UDF_INIT *initid, UDF_ARGS *args, char *result,
                                    unsigned long *length, char *is_null, char *error) {
 
+        fprintf(stderr, "In UDF");
         auto *geombuff1 = reinterpret_cast<unsigned char *>(args->args[0]);
+        fprintf(stderr, "Preparing");
         GEOSGeometry *geom1;
         geom1 = GEOSGeomFromWKB_buf(
                 geombuff1,
                 args->lengths[0]
         );
+        fprintf(stderr, "Converted to wkb");
         char *encoded;
         encoded = GEOSGeomToWKT(geom1);
+        fprintf(stderr, "Converted to wkt");
+        fprintf(stderr, encoded);
         free(geom1);
         //size_t outputlength = 0;
         //char *encoded = base64_encode(reinterpret_cast<const unsigned char *>(geombuff1), args->lengths[0], &outputlength);
