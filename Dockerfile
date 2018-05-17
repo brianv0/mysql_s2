@@ -7,6 +7,7 @@ RUN \
     # mysql-udf-http
     git clone --recurse-submodules https://github.com/brianv0/mysql_s2.git \
     && cd mysql_s2/ \
+    && (cd src/geos && cmake . && make -j9) \
     && cmake . \
-    && make \
+    && make -j9 \
     && cp src/libmysqls2.so /usr/lib/mysql/plugin/
