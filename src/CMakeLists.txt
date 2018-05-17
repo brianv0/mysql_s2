@@ -6,8 +6,13 @@ if (APPLE)
     set(OPENSSL_ROOT_DIR /usr/local/opt/openssl)
 endif()
 
-include_directories(${MYSQLS2_SOURCE_DIR}/src/s2geometry/src ${MYSQS2_SOURCE_DIR}/src/base64 ${MYSQL_INCLUDE_DIR})
+include_directories(${MYSQLS2_SOURCE_DIR}/src
+        ${MYSQLS2_SOURCE_DIR}/src/s2geometry/src
+        ${MYSQLS2_SOURCE_DIR}/src/geos/capi
+        ${MYSQS2_SOURCE_DIR}/src/base64
+        ${MYSQL_INCLUDE_DIR})
 
 add_subdirectory(s2geometry)
+add_subdirectory(geos)
 add_library (mysqls2 SHARED mysqls2.cxx)
-target_link_libraries(mysqls2 s2)
+target_link_libraries(mysqls2 s2 geos)
