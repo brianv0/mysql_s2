@@ -14,6 +14,6 @@ include_directories(${MYSQLS2_SOURCE_DIR}/src
         ${MYSQL_INCLUDE_DIR})
 
 add_subdirectory(s2geometry)
-add_subdirectory(geos)
+add_subdirectory(geos EXCLUDE_FROM_ALL)
 add_library (mysqls2 SHARED mysqls2.cxx)
 target_link_libraries(mysqls2 s2 geos)
