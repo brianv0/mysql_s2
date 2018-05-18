@@ -30,6 +30,31 @@ extern "C" {
 #define LOG(...)
 #endif
 
+    void
+    notice(const char *fmt, ...) {
+        va_list ap;
+
+        fprintf( stdout, "NOTICE: ");
+
+        va_start (ap, fmt);
+        vfprintf( stdout, fmt, ap);
+        va_end(ap);
+        fprintf( stdout, "\n" );
+    }
+
+    void
+    log_and_exit(const char *fmt, ...) {
+        va_list ap;
+
+        fprintf( stdout, "ERROR: ");
+
+        va_start (ap, fmt);
+        vfprintf( stdout, fmt, ap);
+        va_end(ap);
+        fprintf( stdout, "\n" );
+        exit(1);
+    }
+
 
     my_bool UDF_API s2_contains_init(UDF_INIT *initid, UDF_ARGS *args, char *message);
     char UDF_API *s2_contains(UDF_INIT *initid, UDF_ARGS *args, char *result,
@@ -37,6 +62,7 @@ extern "C" {
     void UDF_API s2_contains_deinit(UDF_INIT *initid);
 
     my_bool UDF_API s2_contains_init(UDF_INIT *initid, UDF_ARGS *args, char *message) {
+        initGEOS(notice, log_and_exit);
         my_bool const_item = 1;
 
         if (args->arg_count != 2) {
@@ -66,8 +92,9 @@ extern "C" {
                 reinterpret_cast<const unsigned char *>(hexstr),
                 args->lengths[0]
         );
-        fprintf(stderr, "Preparing%d", geombuff1);
-        fprintf(stderr, "Preparing%d", geom1);
+
+        fprintf(stderr, "Preparing %d\n", geombuff1);
+        fprintf(stderr, "Preparing %d\n", geom1);
         auto typ = GEOSGeomTypeId(geom1);
         char buffer [10];
         sprintf(buffer, "type: %d", typ);
@@ -92,6 +119,7 @@ extern "C" {
         }
         fflush(stderr);
         fflush(stdout);
+        finishGEOS();
     }
 
 }
