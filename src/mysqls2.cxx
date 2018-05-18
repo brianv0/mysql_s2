@@ -66,9 +66,9 @@ extern "C" {
                 reinterpret_cast<const unsigned char *>(hexstr),
                 args->lengths[0]
         );
-        auto num = GEOSGetNumCoordinates(geom1);
+        auto typ = GEOSGeomTypeId(geom1);
         char buffer [10];
-        sprintf(buffer, "cnum:%d", num);
+        sprintf(buffer, "type: %d", typ);
         return buffer;
 //        char *encoded;
 //        encoded = GEOSGeomToWKT(geom1);
