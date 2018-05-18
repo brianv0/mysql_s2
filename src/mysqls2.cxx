@@ -60,9 +60,10 @@ extern "C" {
         auto *geombuff1 = reinterpret_cast<unsigned char *>(args->args[0]);
         *length = 9;
         fprintf(stderr, "Preparing");
+        const char* hexstr = "\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\xf0\x3f\x00\x00\x00\x00\x00\x00\x00\x40";
         GEOSGeometry *geom1;
         geom1 = GEOSGeomFromWKB_buf(
-                geombuff1,
+                reinterpret_cast<const unsigned char *>(hexstr),
                 args->lengths[0]
         );
         auto num = GEOSGetNumCoordinates(geom1);
