@@ -83,12 +83,17 @@ extern "C" {
 
         fprintf(stderr, "In UDF");
         auto *geombuff1 = reinterpret_cast<unsigned char *>(args->args[0]);
+        fprintf(stderr, "HEX STR, len\n", args->lengths[0]);
+        for (int i = 0; i < args->lengths[0]; i++) {
+            fprintf(stderr, "%x", args->args[0][i]);
+        }
+        fprintf(stderr, "\n");
         *length = 9;
         fprintf(stderr, "Preparing");
-        const char* hexstr = "\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\xf0\x3f\x00\x00\x00\x00\x00\x00\x00\x40";
+        //const char* hexstr = "\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\xf0\x3f\x00\x00\x00\x00\x00\x00\x00\x40";
         GEOSGeometry *geom1;
         geom1 = GEOSGeomFromWKB_buf(
-                reinterpret_cast<const unsigned char *>(hexstr),
+                geombuff1,
                 args->lengths[0]
         );
 
