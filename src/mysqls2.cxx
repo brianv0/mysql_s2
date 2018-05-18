@@ -89,6 +89,7 @@ extern "C" {
             free(initid->ptr);
         }
         fflush(stderr);
+        fflush(stdout);
     }
 
 }
