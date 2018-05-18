@@ -82,7 +82,6 @@ extern "C" {
                                    unsigned long *length, char *is_null, char *error) {
 
         fprintf(stderr, "In UDF");
-        fprintf(stdout, "In UDF2");
         auto *geombuff1 = reinterpret_cast<unsigned char *>(args->args[0]);
         *length = 9;
         fprintf(stderr, "Preparing");
@@ -97,6 +96,8 @@ extern "C" {
         fprintf(stderr, "Preparing %d\n", geom1);
         auto typ = GEOSGeomTypeId(geom1);
         char buffer [10];
+
+        fprintf(stderr, "Type %d\n", typ);
         sprintf(buffer, "type: %d", typ);
         return buffer;
 //        char *encoded;
