@@ -66,6 +66,8 @@ extern "C" {
                 reinterpret_cast<const unsigned char *>(hexstr),
                 args->lengths[0]
         );
+        fprintf(stderr, "Preparing%d", geombuff1);
+        fprintf(stderr, "Preparing%d", geom1);
         auto typ = GEOSGeomTypeId(geom1);
         char buffer [10];
         sprintf(buffer, "type: %d", typ);
