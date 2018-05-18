@@ -88,6 +88,7 @@ extern "C" {
         if (initid->ptr) {
             free(initid->ptr);
         }
+        fflush(stderr);
     }
 
 }
